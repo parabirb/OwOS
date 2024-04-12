@@ -57,3 +57,10 @@ pub fn putString(string: []const u8, fg: u8, bg: u8) void {
         putChar(string[i], fg, bg);
     }
 }
+
+// gay put string
+pub fn putStringGay(string: []const u8) void {
+    for (0..string.len) |i| {
+        putChar(string[i], @truncate(i % 7 + 9), 0x0);
+    }
+}

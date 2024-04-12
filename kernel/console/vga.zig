@@ -7,5 +7,3 @@ pub fn writeCharacter(char: u8, fg: u8, bg: u8, x: u8, y: u8) void {
     // set the character
     memory_location.* = (@as(u16, color_byte) << 8) | char;
 }
-
-// todo: vga framebuffer mode
