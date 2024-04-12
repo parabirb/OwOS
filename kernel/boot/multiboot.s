@@ -1,5 +1,8 @@
-.equ FLAGS, 0
+# Get memory map from the bootloader
+.equ FLAGS, 1
+# multiboot1 magic
 .equ MAGIC, 0x1badb002
+# checksum
 .equ CHECKSUM, -(MAGIC + FLAGS)
 
 .section .multiboot

@@ -11,6 +11,9 @@ var cursor = Cursor {
     .y = 0
 };
 
+// char map for hex
+const char_map = [_]u8{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+
 // scroll function
 fn scroll() void {
     // for each row
@@ -62,5 +65,35 @@ pub fn putString(string: []const u8, fg: u8, bg: u8) void {
 pub fn putStringGay(string: []const u8) void {
     for (0..string.len) |i| {
         putChar(string[i], @truncate(i % 7 + 9), 0x0);
+    }
+}
+
+// put u32
+pub fn putU32(int: u32) void {
+    // put the hex string first
+    putString("0x", 0xf, 0x0);
+    // then for each letter
+    for (0..8) |i| {
+        putChar(char_map[(int >> @truncate((7 - i) * 4)) & 0xf], 0xf, 0x0);
+    }
+}
+
+// put u16
+pub fn putU16(int: u16) void {
+    // put the hex string first
+    putString("0x", 0xf, 0x0);
+    // then for each letter
+    for (0..4) |i| {
+        putChar(char_map[(int >> @truncate((3 - i) * 4)) & 0xf], 0xf, 0x0);
+    }
+}
+
+// pub u8
+pub fn putU8(int: u16) void {
+    // put the hex string first
+    putString("0x", 0xf, 0x0);
+    // then for each letter
+    for (0..2) |i| {
+        putChar(char_map[(int >> @truncate((1 - i) * 4)) & 0xf], 0xf, 0x0);
     }
 }

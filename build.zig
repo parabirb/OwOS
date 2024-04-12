@@ -14,7 +14,7 @@ pub fn build(b: *std.build.Builder) !void {
         .target = target,
         .optimize = optimize,
     });
-    kernel.addAssemblyFile(.{ .path = "kernel/multiboot.s" });
+    kernel.addAssemblyFile(.{ .path = "kernel/boot/multiboot.s" });
     kernel.code_model = .kernel;
     kernel.setLinkerScriptPath(.{ .path = "kernel/linker.ld" });
     kernel.pie = true;
