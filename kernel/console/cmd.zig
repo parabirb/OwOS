@@ -19,9 +19,9 @@ fn scroll() void {
     // for each row
     for (1..25) |row| {
         // get the row before
-        var lastRow: u32 = 0xb8000 + (row - 1) * 160;
+        const lastRow: u32 = 0xb8000 + (row - 1) * 160;
         // get this row
-        var thisRow: u32 = lastRow + 160;
+        const thisRow: u32 = lastRow + 160;
         // for each byte of this row, replace the last row's byte with the new one
         for (0..160) |byte| {
             @as(*u8, @ptrFromInt(lastRow + byte)).* = @as(*u8, @ptrFromInt(thisRow + byte)).*;
